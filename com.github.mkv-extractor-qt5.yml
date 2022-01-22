@@ -1,0 +1,251 @@
+app-id: com.github.mkv-extractor-qt5
+runtime: org.kde.Platform
+runtime-version: '5.15'
+sdk: org.kde.Sdk
+command: mkv-extractor-qt5
+branch: stable
+rename-icon: mkv-extractor-qt5
+#rename-desktop-file not needed, already gets installed with correct name (l.179)
+#rename-appdata-file: mkv-extractor-qt5
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+    version: '20.08'
+    autodownload: true
+    autodelete: false
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+cleanup:
+  - /include
+  - /lib/*.a
+  - /lib/*.la
+  - /lib/pkgconfig
+  - /share/man
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=home
+modules:
+  - name: pyqt5
+    config-opts:
+      - '--disable-static'
+      - '--enable-x11'
+      - '--enable-wayland'
+    buildsystem: simple
+    build-commands:
+      - >-
+        PYVER=$(python3 -c "import sys;print(sys.version_info[1])") &&
+        QMAKEPATH=/app/lib python3 configure.py --confirm-license
+        --no-designer-plugin --bindir=/app/bin
+        --destdir=/app/lib/python3.${PYVER}/site-packages
+        --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip
+        --stubsdir=/app/lib/python3.${PYVER}/site-packages/PyQt5
+      - make -j $FLATPAK_BUILDER_N_JOBS
+      - make install
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/8e/a4/d5e4bf99dd50134c88b95e926d7b81aad2473b47fde5e3e4eac2c69a8942/PyQt5-5.15.4.tar.gz
+        sha256: 2a69597e0dd11caabe75fae133feca66387819fc9bc050f547e5551bce97e5be
+    cleanup:
+      - /bin
+    modules:
+      - name: toml
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: https://files.pythonhosted.org/packages/da/24/84d5c108e818ca294efe7c1ce237b42118643ce58a14d2462b3b2e3800d5/toml-0.10.1.tar.gz
+            sha256: 926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f
+        cleanup:
+          - /bin
+      - name: packaging
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: >-
+              https://files.pythonhosted.org/packages/55/fd/fc1aca9cf51ed2f2c11748fa797370027babd82f87829c7a8e6dbe720145/packaging-20.4.tar.gz
+            sha256: 4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8
+        cleanup:
+          - /bin
+      - name: pyparsing
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
+            sha256: c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1
+        cleanup:
+          - /bin
+      - name: sip
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: https://files.pythonhosted.org/packages/33/e9/27730ac17713c0a80d81d8f3bb56213f1549d96f9dc183fd16a7eec6287c/sip-5.5.0.tar.gz
+            sha256: 5d024c419b30fea8a6de8c71a560c7ab0bc3c221fbfb14d55a5b865bd58eaac5
+        cleanup:
+          - /bin
+      - name: PyQt5_sip
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: https://files.pythonhosted.org/packages/73/8c/c662b7ebc4b2407d8679da68e11c2a2eb275f5f2242a92610f6e5024c1f2/PyQt5_sip-12.8.1.tar.gz
+            sha256: 30e944db9abee9cc757aea16906d4198129558533eb7fadbe48c5da2bd18e0bd
+        cleanup:
+          - /bin
+
+  - name: imagemagick
+    config-opts:
+      - '--enable-static=yes'
+      - '--disable-docs'
+      - '--with-png'
+      - '--with-jpeg'
+      - '--with-zlib'
+      - '--enable-zero-configuration'
+    sources:
+      - type: archive
+        url: https://download.imagemagick.org/ImageMagick/download/ImageMagick-7.1.0-19.tar.xz
+        sha256: 3fd79174ab0f30bc1643af3e654f1d2ffcc3a9554263981155688b4f49f7fd77
+      - type: shell
+        commands:
+          - sed -i '32a <policy domain=\\"coder\\" rights=\\"read | write\\"
+            pattern=\\"PDF\\"/> \\' MagickCore/policy-private.h
+
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/include
+      - cp -R boost /app/include
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+        sha256: fc9f85fc030e233142908241af7a846e60630aa7388de9a5fafb1f3a26840854
+
+  - name: cmark
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMARK_STATIC=OFF
+    cleanup:
+      - /bin
+    sources:
+      - type: archive
+        url: https://github.com/commonmark/cmark/archive/refs/tags/0.30.2.tar.gz
+        sha256: 6c7d2bcaea1433d977d8fed0b55b71c9d045a7cdf616e3cd2dce9007da753db3
+
+  - name: mkvtoolnix
+    buildsystem: simple
+    build-commands:
+      - ./configure
+        --enable-optimization
+        --enable-debug
+        --prefix=/app
+        --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
+        --disable-update-check
+      - rake
+      - rake install
+    sources:
+      - type: archive
+        url: https://mkvtoolnix.download/sources/mkvtoolnix-64.0.0.tar.xz
+        sha256: 843ea623f21ae2407f8f42839c41a22abf116bdd509e87d875bdc737703ab953
+
+  - name: bdsup2subpp
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/TheGreatMcPain/BDSup2SubPlusPlus
+        commit: 48e0395ff2354bdbb320c2363eff28a92c6c5fe2
+
+  - name: mkclean
+    buildsystem: simple
+    build-commands:
+      - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
+      - make
+      - install -Dm755 mkclean/mkclean "/app/bin/mkclean"
+      - install -Dm644 ReadMe.txt "/app/share/licenses/mkclean/License.txt"
+    sources:
+      - type: archive
+        url: https://sourceforge.net/projects/matroska/files/mkclean/mkclean-0.9.0.tar.bz2
+        sha256: 2f5cdcab0e09b65f9fef8949a55ef00ee3dd700e4b4050e245d442347d7cc3db
+
+  - name: mkvalidator
+    buildsystem: simple
+    build-commands:
+      - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
+      - make
+      - install -Dm755 mkvalidator/mkvalidator "/app/bin/mkvalidator"
+      - install -Dm644 ReadMe.txt "/app/share/licenses/mkvalidator/License.txt"
+    sources:
+      - type: archive
+        url: https://sourceforge.net/projects/matroska/files/mkvalidator/mkvalidator-0.6.0.tar.bz2
+        sha256: f9eaa2138fade7103e6df999425291d2947c5355294239874041471e3aa243f0
+
+  - name: qtesseract5
+    buildsystem: simple
+    build-commands:
+      - chmod +x build.sh
+      - ./build.sh
+      - ln -s /app/share/qtesseract5/Qtesseract5.py "/app/bin/qtesseract5"
+      - install -Dm755 Qtesseract5.py "/app/share/qtesseract5/Qtesseract5.py"
+      - install -Dm644 Qtesseract5Ressources_rc.py "/app/share/qtesseract5/Qtesseract5Ressources_rc.py"
+      - install -Dm644 langcodes.py "/app/share/qtesseract5/langcodes.py"
+      - install -Dm644 Qtesseract5_en_EN.qm "/app/share/qtesseract5/Qtesseract5_en_EN.qm"
+      - install -Dm644 Qtesseract5_fr_FR.qm "/app/share/qtesseract5/Qtesseract5_fr_FR.qm"
+      - install -Dm644 Qtesseract5_cs_CZ.qm "/app/share/qtesseract5/Qtesseract5_cs_CZ.qm"
+      - install -Dm644 WhatsUp/WhatsUp.py "/app/share/qtesseract5/WhatsUp/WhatsUp.py"
+      - install -Dm644 man/qtesseract5.1 "/app/share/man/man1/qtesseract5.1"
+      - install -Dm644 man/qtesseract5.fr.1 "/app/share/man/fr/man1/qtesseract5.1"
+      - install -Dm644 qtesseract5.desktop "/app/share/applications/qtesseract5.desktop"
+      #- install -Dm644 "AUR/qtesseract5.svgz" "/app/share/icons/hicolor/scalable/apps/qtesseract5.svgz"
+    sources:
+      - type: git
+        url: https://github.com/Hizoka76/QTesseract5
+        commit: 40aecb5b00aabc36111b758464b73117a79f9bc5
+      - type: shell
+        commands:
+          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
+
+  - name: mkv-extractor-qt5
+    buildsystem: simple
+    build-commands:
+      - chmod +x build.sh
+      - ./build.sh
+      - install -d "/app/bin"
+      - ln -s "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py" "/app/bin/mkv-extractor-qt5"
+      - install -Dm644 CodecListFile.py "/app/share/mkv-extractor-qt5/CodecListFile.py"
+      - install -Dm755 MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py"
+      - install -Dm644 MKVExtractorQt5_cs_CZ.qm "/app/share/mkv-extractor-qt5/MKVExtractorQt5_cs_CZ.qm"
+      - install -Dm644 MKVExtractorQt5_fr_FR.qm "/app/share/mkv-extractor-qt5/MKVExtractorQt5_fr_FR.qm"
+      - install -Dm644 MKVRessources_rc.py "/app/share/mkv-extractor-qt5/MKVRessources_rc.py"
+      - install -Dm644 ui_MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/ui_MKVExtractorQt5.py"
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom.py "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom.py"
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom_fr_FR.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_fr_FR.qm"
+      - install -Dm644 WhatsUp/WhatsUp.py "/app/share/mkv-extractor-qt5/WhatsUp/WhatsUp.py"
+      - install -Dm644 mkv-extractor-qt5.desktop "/app/share/applications/com.github.mkv-extractor-qt5.desktop"
+      - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
+      - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
+      - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
+      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}"; done
+    sources:
+      - type: git
+        url: https://github.com/Hizoka76/MKV-Extractor-Qt5
+        branch: main
+        #tag: v5.5.9
+        commit: c321f99cc00a89165a1f17b2c01a66a6bf6fbcd6
+      - type: shell
+        commands:
+          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
+          - sed 's|BDSup2Sub.jar|bdsup2sub++|g' -i MKVExtractorQt5.py
+
