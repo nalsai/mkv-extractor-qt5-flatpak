@@ -1,6 +1,6 @@
 app-id: com.github.mkv-extractor-qt5
 runtime: org.kde.Platform
-runtime-version: "5.15-21.08"
+runtime-version: 5.15-21.08
 sdk: org.kde.Sdk
 command: mkv-extractor-qt5
 default-branch: stable
@@ -35,9 +35,9 @@ finish-args:
 modules:
   - name: pyqt5
     config-opts:
-      - '--disable-static'
-      - '--enable-x11'
-      - '--enable-wayland'
+      - --disable-static
+      - --enable-x11
+      - --enable-wayland
     buildsystem: simple
     build-commands:
       - >-
@@ -110,20 +110,20 @@ modules:
 
   - name: imagemagick
     config-opts:
-      - '--enable-static=yes'
-      - '--disable-docs'
-      - '--with-png'
-      - '--with-jpeg'
-      - '--with-zlib'
-      - '--enable-zero-configuration'
+      - --enable-static=yes
+      - --disable-docs
+      - --with-png
+      - --with-jpeg
+      - --with-zlib
+      - --enable-zero-configuration
     sources:
       - type: archive
         url: https://download.imagemagick.org/ImageMagick/download/ImageMagick-7.1.0-20.tar.xz
         sha256: ddc458634c4c1a1e84c9e97c3eb120123519651a8431dc17ea5ac7291dbe3598
       - type: shell
         commands:
-          - sed -i '32a <policy domain=\\"coder\\" rights=\\"read | write\\"
-            pattern=\\"PDF\\"/> \\' MagickCore/policy-private.h
+          - sed -i '32a <policy domain=\\"coder\\" rights=\\"read | write\\" pattern=\\"PDF\\"/>
+            \\' MagickCore/policy-private.h
 
   - name: drake
     buildsystem: simple
@@ -165,16 +165,13 @@ modules:
   - name: mkvtoolnix
     buildsystem: simple
     build-commands:
-      - ./configure
-        --enable-optimization
-        --enable-debug
-        --prefix=/app
-        --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
+      - ./configure --enable-optimization --enable-debug --prefix=/app --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
         --disable-update-check
       - GEM_HOME=/app/gems /app/gems/bin/drake -j $FLATPAK_BUILDER_N_JOBS
       - GEM_HOME=/app/gems /app/gems/bin/drake install
       - mkdir -p /app/share/doc/mkvtoolnix
-      - install -m0644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING README.md
+      - install -m0644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING
+        README.md
     sources:
       - type: archive
         url: https://mkvtoolnix.download/sources/mkvtoolnix-65.0.0.tar.xz
@@ -253,7 +250,9 @@ modules:
         commit: 40aecb5b00aabc36111b758464b73117a79f9bc5
       - type: shell
         commands:
-          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
+          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
+            -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i
+            build.sh
 
   - name: mkv-extractor-qt5
     buildsystem: simple
@@ -275,15 +274,18 @@ modules:
       - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
       - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
       - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
-      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}"; done
+      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}";
+        done
     sources:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5
         branch: main
         #tag: v5.5.9
-        commit: c321f99cc00a89165a1f17b2c01a66a6bf6fbcd6
+        commit: e666188c110cc36544b9f1ba7f3e4ad7ec5a1b93
       - type: shell
         commands:
-          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
+          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
+            -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i
+            build.sh
           - sed 's|BDSup2Sub.jar|bdsup2sub++|g' -i MKVExtractorQt5.py
 
