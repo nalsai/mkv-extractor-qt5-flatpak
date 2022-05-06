@@ -12,13 +12,17 @@ I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there l
 flatpak install https://flatpak.nils.moe/com.github.mkv-extractor-qt5.flatpakref
 ```
 
-You can also install it from the bundle in Releases on GitHub, but you won't get updates that way.
+You also need to install the ffmepg extension:
+
+```bash
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
+```
 
 ## Building
 
 ### Install SDK, Platform and ffmpeg Extension
 
 ```bash
-flatpak install flathub org.freedesktop.Platform.ffmpeg-full//20.08
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
 flatpak-builder --install-deps-from=flathub --force-clean build-dir com.github.mkv-extractor-qt5.yml
 ```
