@@ -330,8 +330,8 @@ modules:
       - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
       - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
       - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
-      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}";
-        done
+      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}"; done
+      - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml /app/share/appdata/com.github.mkv-extractor-qt5.metainfo.xml
     sources:
       - type: archive
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/archive/refs/tags/v5.5.10.tar.gz
@@ -342,4 +342,5 @@ modules:
             -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i
             build.sh
           - sed 's|BDSup2Sub.jar|bdsup2sub++|g' -i MKVExtractorQt5.py
-
+      - type: file
+        path: com.github.mkv-extractor-qt5.metainfo.xml

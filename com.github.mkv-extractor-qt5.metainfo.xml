@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.github.mkv-extractor-qt5</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0</project_license>
+    <name>MKV Extractor Qt5</name>
+    <summary>Extract tracks from mkv files</summary>
+    <summary xml:lang="de">Extrahiere Spuren aus MKV-Dateien</summary>
+    <summary xml:lang="fr">Extracteur de piste depuis des fichiers mkv</summary>
+    <description>
+        <p>MKV Extractor Qt5 is written in python3 + Qt5 and works for Linux.</p>
+        <p>How it works:</p>
+        <ul>
+            <li>Specify a matroska file (mkv).</li>
+            <li>Check the tracks to extract.</li>
+            <li>Press the button "Execute".</li>
+        </ul>
+        <p>The software allows to:</p>
+        <ul>
+            <li>Extract tracks from matroska (mkv) files.</li>
+            <li>
+                Convert DTS audio files to AC3 so that the matroska (mkv) file via ffmpeg or avconv.
+                <ul>
+                    <li>The ac3 format allows more hardware compatibility (like the FreeBox v5)</li>
+                    <li>It is also possible to amplify the audio and switch to stereo.</li>
+                </ul>
+            </li>
+            <li>
+                Re-encapsulate a matroska (mkv) file after removing tracks or converting DTS audio files.
+                <ul>
+                    <li>If you are only interested in re-encapsulation, you will be offered to use mkvtoolnix-gui if it is installed.</li>
+                </ul>
+            </li>
+            <li>Check the conformity of the matroska (mkv) file via mkvalidator.</li>
+            <li>Optimize the matroska (mkv) file via mkclean.</li>
+            <li>View (run + launch) attachments to matroska (mkv) file.</li>
+            <li>Automatically convert a vobsub file to srt via tesseract with multi cpu.</li>
+        </ul>
+    </description>
+    <description xml:lang="fr">
+        <p>MKV Extracto Qt5 est écrit en python 3 + Qt5 et fonction pour Linux.</p>
+        <p>Fonctionnement :</p>
+        <ul>
+            <li>Indiquer un fichier matroska (mkv).</li>
+            <li>Cocher les pistes à extraires.</li>
+            <li>Presser le bouton "Executer".</li>
+        </ul>
+        <p>Le logiciel permet de :</p>
+        <ul>
+            <li>Extraire les pistes contenu dans des fichiers matroska (mkv).</li>
+            <li>
+                Convertir des fichiers audio DTS en AC3 afin que le fichier matroska (mkv) via ffmpeg ou avconv.
+                <ul>
+                    <li>Le format ac3 permet plus de compatibilité matériel (comme la FreeBox v5)</li>
+                    <li>Il est également possible d'amplifier l'audio et de passer en stéréo.</li>
+                </ul>
+            </li>
+            <li>
+                Ré-encapsuler un fichier matroska (mkv) après avoir enlevé des pistes ou la conversion de fichiers audio DTS.
+                <ul>
+                    <li>Si seule la rencapsulation vous interresse, il vous sera proposer d'utiliser mkvtoolnix-gui s'il est installé.</li>
+                </ul>
+            </li>
+            <li>Vérifier la conformité du fichier matroska (mkv) via mkvalidator.</li>
+            <li>Optimiser le fichier matroska (mkv) via mkclean.</li>
+            <li>Visualiser (ectration + lancement) les pièces jointes au fichier matroska (mkv).</li>
+            <li>Convertir automatiquement un fichier vobsub en srt via tesseract avec multi cpu.</li>
+        </ul>
+    </description>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://user-images.githubusercontent.com/48289933/138563203-081bf6b5-61d9-49bf-9d32-52494414c5b1.png</image>
+        </screenshot>
+    </screenshots>
+    <screenshots xml:lang="fr">
+        <screenshot type="default">
+            <image>https://user-images.githubusercontent.com/48289933/138563147-9bf32ec0-674f-4fb1-88b2-377d43b9e5de.png</image>
+        </screenshot>
+    </screenshots>
+    <categories>
+        <category>AudioVideo</category>
+        <category>AudioVideoEditing</category>
+    </categories>
+    <url type="homepage">https://github.com/Hizoka76/MKV-Extractor-Qt5</url>
+    <url type="bugtracker">https://github.com/Hizoka76/MKV-Extractor-Qt5/issues</url>
+    <developer_name>Hizoka</developer_name>
+    <content_rating type="oars-1.1"/>
+    <releases>
+        <release version="5.5.10" date="2022-04-27"/>
+    </releases>
+</component>
