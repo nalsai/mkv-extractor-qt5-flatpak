@@ -141,8 +141,8 @@ modules:
       - --enable-zero-configuration
     sources:
       - type: archive
-        url: https://download.imagemagick.org/ImageMagick/download/ImageMagick-7.1.0-35.tar.xz
-        sha256: 26063653de155bab820894e5216a38577420c4dfd59e784daca6601e37f294e0
+        url: https://download.imagemagick.org/ImageMagick/download/ImageMagick-7.1.0-37.tar.xz
+        sha256: 9a0cb5218ea687fad28eedf143dff9f0724eb62c73264231d690fe844ecce5ec
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -330,7 +330,8 @@ modules:
       - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
       - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
       - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
-      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}"; done
+      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}";
+        done
       - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml /app/share/appdata/com.github.mkv-extractor-qt5.metainfo.xml
     sources:
       - type: archive
