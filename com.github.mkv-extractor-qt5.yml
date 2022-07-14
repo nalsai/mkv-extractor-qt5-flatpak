@@ -143,13 +143,13 @@ modules:
       - --enable-zero-configuration
     sources:
       - type: archive
-        url: https://download.imagemagick.org/ImageMagick/download/ImageMagick-7.1.0-37.tar.xz
-        sha256: 9a0cb5218ea687fad28eedf143dff9f0724eb62c73264231d690fe844ecce5ec
+        url: https://imagemagick.org/archive/ImageMagick.tar.gz
+        sha256: 650014c62b2d56dd6b8128dbb10c8fe69eb583867b6029126e359d7464a53c4e
         x-checker-data:
           type: anitya
           project-id: 1372
           stable-only: true
-          url-template: https://download.imagemagick.org/ImageMagick/download/ImageMagick-$version.tar.xz
+          url-template: https://imagemagick.org/archive/ImageMagick.tar.gz
 
   - name: drake
     buildsystem: simple
