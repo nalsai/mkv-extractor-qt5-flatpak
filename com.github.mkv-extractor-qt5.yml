@@ -51,8 +51,8 @@ modules:
       - make install
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/72/bf/4e7c66eefa9ede1ec01d065d220373667f4ca3285a83a6430eefc254904c/PyQt5-5.15.5.tar.gz
-        sha256: b411b7a8fa03901c9feb1dcbac7ea1fc3ce20b9ae682762b777cd5398749ca2b
+        url: https://files.pythonhosted.org/packages/e1/57/2023316578646e1adab903caab714708422f83a57f97eb34a5d13510f4e1/PyQt5-5.15.7.tar.gz
+        sha256: 755121a52b3a08cb07275c10ebb96576d36e320e572591db16cfdbc558101594
         x-checker-data:
           type: pypi
           name: PyQt5
@@ -123,8 +123,8 @@ modules:
           - python3 setup.py install --prefix=/app --root=/
         sources:
           - type: archive
-            url: https://files.pythonhosted.org/packages/a3/82/08a09deda701feb930aa6462f2f22e07cbcb9aa7c1ef361a090221b4587e/PyQt5_sip-12.10.1.tar.gz
-            sha256: 97e008795c453488f51a5c97dbff29cda7841afb1ca842c9e819d8e6cc0ae724
+            url: https://files.pythonhosted.org/packages/39/5f/fd9384fdcb9cd0388088899c110838007f49f5da1dd1ef6749bfb728a5da/PyQt5_sip-12.11.0.tar.gz
+            sha256: b4710fd85b57edef716cc55fae45bfd5bfac6fc7ba91036f1dcc3f331ca0eb39
             x-checker-data:
               type: pypi
               name: PyQt5_sip
@@ -218,8 +218,8 @@ modules:
         README.md
     sources:
       - type: archive
-        url: https://mkvtoolnix.download/sources/mkvtoolnix-68.0.0.tar.xz
-        sha256: 9c29c61ef3496b18585c1e370bc7e121f7cfe1f8c35b851e7319a6b8325fd66f
+        url: https://mkvtoolnix.download/sources/mkvtoolnix-69.0.0.tar.xz
+        sha256: 8bad39de495be6e77346cffb4c334c5195edec1a2d79a27ba01b7a372db180aa
         x-checker-data:
           type: anitya
           project-id: 1991
