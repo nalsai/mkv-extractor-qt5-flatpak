@@ -336,9 +336,13 @@ modules:
         done
       - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml /app/share/appdata/com.github.mkv-extractor-qt5.metainfo.xml
     sources:
-      - type: archive
-        url: https://github.com/Hizoka76/MKV-Extractor-Qt5/archive/refs/tags/v5.5.10.tar.gz
-        sha256: d7f73af02dcb4b7e19a0a52420f1435497e2d5c208919cc6746a3d564f7785ba
+      - type: git
+        url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
+        tag: v5.5.10
+        commit: e666188c110cc36544b9f1ba7f3e4ad7ec5a1b93
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
       - type: shell
         commands:
           - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
