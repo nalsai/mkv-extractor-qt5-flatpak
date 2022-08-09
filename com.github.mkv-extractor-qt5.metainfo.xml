@@ -86,6 +86,70 @@
     <developer_name>Hizoka</developer_name>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="22.08.08" date="2022-08-08">
+            <description>
+<ul>
+<li><p>Extractions:</p>
+<ul>
+<li>Extracts each time the attached files you want to display to avoid displaying an old file.</li>
+</ul>
+</li>
+<li><p>Software:</p>
+<ul>
+<li>Added search for mkvtoolnix-gui in addition to mmg.</li>
+<li>Changed the term mmg to MKVToolNix-Gui.</li>
+<li>Added the address configuration of MKVExtract and MKVMerge.</li>
+<li>Live management when modifying software addresses.</li>
+</ul>
+</li>
+<li><p>Graphical interface:</p>
+<ul>
+<li>Adjustments to the help texts.</li>
+<li>Fixed illogicalities in the status of actions in different circumstances.</li>
+<li>Added an option to minimize the window when closing it with the cross (or with alt+F4).</li>
+<li>No longer keeps the &quot;Use FFMpeg&quot; option in memory.</li>
+<li>When opening pre-encapsulated subtitles, a blocking waiting window is displayed.</li>
+<li>Added statustip to track list headers.</li>
+<li>Bolded the options whose value differs from the default one.</li>
+<li>Automatic activation of the reencapsulation, audio conversion and subtitle conversion buttons when a sub-option is activated.</li>
+<li>Redesigned the subtitle conversion system.</li>
+<li>Moved the temporary files cleaning option to the global options.</li>
+<li>Possibility to open avi files (with conversion to mkv).</li>
+<li>Modification of the radio buttons, to uncheck them, you have to click on the active one.</li>
+</ul>
+</li>
+<li><p>Code :</p>
+<ul>
+<li>Creation of the QActionCustom class for a multiple management of bubble info.</li>
+<li>Correction of a bug when canceling the work in progress.</li>
+<li>Added python3-psutil to pause processes.</li>
+<li>Completely replaced the pause function which now pauses running tasks.</li>
+<li>Updated the list of codecs.</li>
+<li>Improved extraction of chapters and tags.</li>
+<li>Removed blocking when there is a &quot; in the mkv file name.</li>
+<li>Removed Path, disk_usage, shutil and time dependencies in favor of the possibilities offered by Qt.</li>
+<li>Modification of the reboot via a right click on the quit button.</li>
+<li>Redesigned the file and folder selection system.</li>
+<li>Checking the presence of modules at startup.</li>
+<li>Fixed &quot;libpng warning: iCCP: known incorrect sRGB profile&quot; bug.</li>
+<li>Redesign of the subtitle conversion system.</li>
+<li>Added verification of the existence of the files necessary for the various commands before their execution.</li>
+<li>The temporary files system has been revised.</li>
+<li>Added many checks before or after execution of commands.</li>
+<li>Update the detection of the software folder.</li>
+</ul>
+</li>
+<li><p>Translations:</p>
+<ul>
+<li>Added Spanish language.</li>
+<li>Updated the French translation.</li>
+<li>Translation of QFileDialogCustom, the file/folder selector.</li>
+<li>Moved translations to a subfolder.</li>
+</ul>
+</li>
+</ul>
+            </description>
+        </release>
         <release version="5.5.10" date="2022-04-27"/>
     </releases>
 </component>

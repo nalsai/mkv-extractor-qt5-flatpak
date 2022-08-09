@@ -57,7 +57,7 @@ modules:
           type: pypi
           name: PyQt5
           versions:
-            '==': 5.15.5
+            ==: 5.15.5
     cleanup:
       - /bin
     modules:
@@ -144,7 +144,7 @@ modules:
     sources:
       - type: archive
         url: https://imagemagick.org/archive/ImageMagick.tar.gz
-        sha256: 650014c62b2d56dd6b8128dbb10c8fe69eb583867b6029126e359d7464a53c4e
+        sha256: ceae23f41d2508716ce14d2181f4cea758727d30620b32bcac62fc525bd81d48
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -319,30 +319,34 @@ modules:
       - ./build.sh
       - install -d "/app/bin"
       - ln -s "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py" "/app/bin/mkv-extractor-qt5"
-      - install -Dm644 CodecListFile.py "/app/share/mkv-extractor-qt5/CodecListFile.py"
       - install -Dm755 MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py"
-      - install -Dm644 MKVExtractorQt5_cs_CZ.qm "/app/share/mkv-extractor-qt5/MKVExtractorQt5_cs_CZ.qm"
-      - install -Dm644 MKVExtractorQt5_fr_FR.qm "/app/share/mkv-extractor-qt5/MKVExtractorQt5_fr_FR.qm"
+      - install -Dm644 CodecListFile.py "/app/share/mkv-extractor-qt5/CodecListFile.py"
+      - mkdir /app/share/mkv-extractor-qt5/Languages
+      - install -Dm644 Languages/*.qm "/app/share/mkv-extractor-qt5/Languages"
       - install -Dm644 MKVRessources_rc.py "/app/share/mkv-extractor-qt5/MKVRessources_rc.py"
       - install -Dm644 ui_MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/ui_MKVExtractorQt5.py"
       - install -Dm644 QFileDialogCustom/QFileDialogCustom.py "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom.py"
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom_cs_CZ.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_cs_CZ.qm"
       - install -Dm644 QFileDialogCustom/QFileDialogCustom_fr_FR.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_fr_FR.qm"
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom_es_ES.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_es_ES.qm"
       - install -Dm644 WhatsUp/WhatsUp.py "/app/share/mkv-extractor-qt5/WhatsUp/WhatsUp.py"
+      - mkdir /app/share/mkv-extractor-qt5/img
+      - install -Dm644 img/* "/app/share/mkv-extractor-qt5/img" 
       - install -Dm644 mkv-extractor-qt5.desktop "/app/share/applications/com.github.mkv-extractor-qt5.desktop"
       - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
       - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
       - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
-      - for i in img/*; do install -Dm644 ${i} "/app/share/mkv-extractor-qt5/${i}";
-        done
       - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml /app/share/appdata/com.github.mkv-extractor-qt5.metainfo.xml
     sources:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
-        tag: v5.5.10
-        commit: e666188c110cc36544b9f1ba7f3e4ad7ec5a1b93
+        #tag: v22.08.08
+        commit: eedab52b6ccb5b4841a25c173913cfe3d6656d39
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            ">": 22.08.08
       - type: shell
         commands:
           - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
