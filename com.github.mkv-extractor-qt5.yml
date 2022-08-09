@@ -57,7 +57,7 @@ modules:
           type: pypi
           name: PyQt5
           versions:
-            '==': 5.15.5
+            ==: 5.15.5
     cleanup:
       - /bin
     modules:
@@ -129,7 +129,7 @@ modules:
               type: pypi
               name: PyQt5_sip
               versions:
-                '==': 12.10.1
+                ==: 12.10.1
         cleanup:
           - /bin
 
@@ -338,8 +338,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
-        tag: v5.5.10
-        commit: e666188c110cc36544b9f1ba7f3e4ad7ec5a1b93
+        tag: v22.08.08
+        commit: f5fe995f46a43544292e96689f14485dc17536ed
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$

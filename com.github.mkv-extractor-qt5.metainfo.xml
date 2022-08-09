@@ -86,6 +86,7 @@
     <developer_name>Hizoka</developer_name>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="22.08.08" date="2022-08-09"/>
         <release version="5.5.10" date="2022-04-27"/>
     </releases>
 </component>
