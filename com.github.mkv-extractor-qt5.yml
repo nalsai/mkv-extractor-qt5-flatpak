@@ -129,7 +129,7 @@ modules:
               type: pypi
               name: PyQt5_sip
               versions:
-                '==': 12.10.1
+                ==: 12.10.1
         cleanup:
           - /bin
 
@@ -182,8 +182,8 @@ modules:
       - cp -R boost /app/include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2
-        sha256: 475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -331,7 +331,7 @@ modules:
       - install -Dm644 QFileDialogCustom/QFileDialogCustom_es_ES.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_es_ES.qm"
       - install -Dm644 WhatsUp/WhatsUp.py "/app/share/mkv-extractor-qt5/WhatsUp/WhatsUp.py"
       - mkdir /app/share/mkv-extractor-qt5/img
-      - install -Dm644 img/* "/app/share/mkv-extractor-qt5/img" 
+      - install -Dm644 img/* "/app/share/mkv-extractor-qt5/img"
       - install -Dm644 mkv-extractor-qt5.desktop "/app/share/applications/com.github.mkv-extractor-qt5.desktop"
       - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
       - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
@@ -346,7 +346,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            ">": 22.08.08
+            '>': 22.08.08
       - type: shell
         commands:
           - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
