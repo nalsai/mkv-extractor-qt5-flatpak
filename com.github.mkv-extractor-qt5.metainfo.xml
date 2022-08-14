@@ -1,156 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>com.github.mkv-extractor-qt5</id>
-    <metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-3.0</project_license>
-    <name>MKV Extractor Qt5</name>
-    <summary>Extract tracks from mkv files</summary>
-    <summary xml:lang="de">Extrahiere Spuren aus MKV-Dateien</summary>
-    <summary xml:lang="fr">Extracteur de piste depuis des fichiers mkv</summary>
-    <description>
-        <p>MKV Extractor Qt5 is written in python3 + Qt5 and works for Linux.</p>
-        <p>How it works:</p>
+  <id>com.github.mkv-extractor-qt5</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>MKV Extractor Qt5</name>
+  <summary>Extract tracks from mkv files</summary>
+  <summary xml:lang="de">Extrahiere Spuren aus MKV-Dateien</summary>
+  <summary xml:lang="fr">Extracteur de piste depuis des fichiers mkv</summary>
+  <description>
+    <p>MKV Extractor Qt5 is written in python3 + Qt5 and works for Linux.</p>
+    <p>How it works:</p>
+    <ul>
+      <li>Specify a matroska file (mkv).</li>
+      <li>Check the tracks to extract.</li>
+      <li>Press the button "Execute".</li>
+    </ul>
+    <p>The software allows to:</p>
+    <ul>
+      <li>Extract tracks from matroska (mkv) files.</li>
+      <li>
+        Convert DTS audio files to AC3 so that the matroska (mkv) file via ffmpeg or avconv.
         <ul>
-            <li>Specify a matroska file (mkv).</li>
-            <li>Check the tracks to extract.</li>
-            <li>Press the button "Execute".</li>
+          <li>The ac3 format allows more hardware compatibility (like the FreeBox v5)</li>
+          <li>It is also possible to amplify the audio and switch to stereo.</li>
         </ul>
-        <p>The software allows to:</p>
+      </li>
+      <li>
+        Re-encapsulate a matroska (mkv) file after removing tracks or converting DTS audio files.
         <ul>
-            <li>Extract tracks from matroska (mkv) files.</li>
-            <li>
-                Convert DTS audio files to AC3 so that the matroska (mkv) file via ffmpeg or avconv.
-                <ul>
-                    <li>The ac3 format allows more hardware compatibility (like the FreeBox v5)</li>
-                    <li>It is also possible to amplify the audio and switch to stereo.</li>
-                </ul>
-            </li>
-            <li>
-                Re-encapsulate a matroska (mkv) file after removing tracks or converting DTS audio files.
-                <ul>
-                    <li>If you are only interested in re-encapsulation, you will be offered to use mkvtoolnix-gui if it is installed.</li>
-                </ul>
-            </li>
-            <li>Check the conformity of the matroska (mkv) file via mkvalidator.</li>
-            <li>Optimize the matroska (mkv) file via mkclean.</li>
-            <li>View (run + launch) attachments to matroska (mkv) file.</li>
-            <li>Automatically convert a vobsub file to srt via tesseract with multi cpu.</li>
+          <li>If you are only interested in re-encapsulation, you will be offered to use mkvtoolnix-gui if it is installed.</li>
         </ul>
-    </description>
-    <description xml:lang="fr">
-        <p>MKV Extracto Qt5 est écrit en python 3 + Qt5 et fonction pour Linux.</p>
-        <p>Fonctionnement :</p>
+      </li>
+      <li>Check the conformity of the matroska (mkv) file via mkvalidator.</li>
+      <li>Optimize the matroska (mkv) file via mkclean.</li>
+      <li>View (run + launch) attachments to matroska (mkv) file.</li>
+      <li>Automatically convert a vobsub file to srt via tesseract with multi cpu.</li>
+    </ul>
+  </description>
+  <description xml:lang="fr">
+    <p>MKV Extracto Qt5 est écrit en python 3 + Qt5 et fonction pour Linux.</p>
+    <p>Fonctionnement :</p>
+    <ul>
+      <li>Indiquer un fichier matroska (mkv).</li>
+      <li>Cocher les pistes à extraires.</li>
+      <li>Presser le bouton "Executer".</li>
+    </ul>
+    <p>Le logiciel permet de :</p>
+    <ul>
+      <li>Extraire les pistes contenu dans des fichiers matroska (mkv).</li>
+      <li>
+        Convertir des fichiers audio DTS en AC3 afin que le fichier matroska (mkv) via ffmpeg ou avconv.
         <ul>
-            <li>Indiquer un fichier matroska (mkv).</li>
-            <li>Cocher les pistes à extraires.</li>
-            <li>Presser le bouton "Executer".</li>
+          <li>Le format ac3 permet plus de compatibilité matériel (comme la FreeBox v5)</li>
+          <li>Il est également possible d'amplifier l'audio et de passer en stéréo.</li>
         </ul>
-        <p>Le logiciel permet de :</p>
+      </li>
+      <li>
+        Ré-encapsuler un fichier matroska (mkv) après avoir enlevé des pistes ou la conversion de fichiers audio DTS.
         <ul>
-            <li>Extraire les pistes contenu dans des fichiers matroska (mkv).</li>
-            <li>
-                Convertir des fichiers audio DTS en AC3 afin que le fichier matroska (mkv) via ffmpeg ou avconv.
-                <ul>
-                    <li>Le format ac3 permet plus de compatibilité matériel (comme la FreeBox v5)</li>
-                    <li>Il est également possible d'amplifier l'audio et de passer en stéréo.</li>
-                </ul>
-            </li>
-            <li>
-                Ré-encapsuler un fichier matroska (mkv) après avoir enlevé des pistes ou la conversion de fichiers audio DTS.
-                <ul>
-                    <li>Si seule la rencapsulation vous interresse, il vous sera proposer d'utiliser mkvtoolnix-gui s'il est installé.</li>
-                </ul>
-            </li>
-            <li>Vérifier la conformité du fichier matroska (mkv) via mkvalidator.</li>
-            <li>Optimiser le fichier matroska (mkv) via mkclean.</li>
-            <li>Visualiser (ectration + lancement) les pièces jointes au fichier matroska (mkv).</li>
-            <li>Convertir automatiquement un fichier vobsub en srt via tesseract avec multi cpu.</li>
+          <li>Si seule la rencapsulation vous interresse, il vous sera proposer d'utiliser mkvtoolnix-gui s'il est installé.</li>
         </ul>
-    </description>
-    <screenshots>
-        <screenshot type="default">
-            <image>https://user-images.githubusercontent.com/48289933/138563203-081bf6b5-61d9-49bf-9d32-52494414c5b1.png</image>
-        </screenshot>
-    </screenshots>
-    <screenshots xml:lang="fr">
-        <screenshot type="default">
-            <image>https://user-images.githubusercontent.com/48289933/138563147-9bf32ec0-674f-4fb1-88b2-377d43b9e5de.png</image>
-        </screenshot>
-    </screenshots>
-    <categories>
-        <category>AudioVideo</category>
-        <category>AudioVideoEditing</category>
-    </categories>
-    <url type="homepage">https://github.com/Hizoka76/MKV-Extractor-Qt5</url>
-    <url type="bugtracker">https://github.com/Hizoka76/MKV-Extractor-Qt5/issues</url>
-    <developer_name>Hizoka</developer_name>
-    <content_rating type="oars-1.1"/>
-    <releases>
-        <release version="22.08.13" date="2022-08-14"/>
-        <release version="22.08.08" date="2022-08-08">
-            <description>
-<ul>
-<li><p>Extractions:</p>
-<ul>
-<li>Extracts each time the attached files you want to display to avoid displaying an old file.</li>
-</ul>
-</li>
-<li><p>Software:</p>
-<ul>
-<li>Added search for mkvtoolnix-gui in addition to mmg.</li>
-<li>Changed the term mmg to MKVToolNix-Gui.</li>
-<li>Added the address configuration of MKVExtract and MKVMerge.</li>
-<li>Live management when modifying software addresses.</li>
-</ul>
-</li>
-<li><p>Graphical interface:</p>
-<ul>
-<li>Adjustments to the help texts.</li>
-<li>Fixed illogicalities in the status of actions in different circumstances.</li>
-<li>Added an option to minimize the window when closing it with the cross (or with alt+F4).</li>
-<li>No longer keeps the "Use FFMpeg" option in memory.</li>
-<li>When opening pre-encapsulated subtitles, a blocking waiting window is displayed.</li>
-<li>Added statustip to track list headers.</li>
-<li>Bolded the options whose value differs from the default one.</li>
-<li>Automatic activation of the reencapsulation, audio conversion and subtitle conversion buttons when a sub-option is activated.</li>
-<li>Redesigned the subtitle conversion system.</li>
-<li>Moved the temporary files cleaning option to the global options.</li>
-<li>Possibility to open avi files (with conversion to mkv).</li>
-<li>Modification of the radio buttons, to uncheck them, you have to click on the active one.</li>
-</ul>
-</li>
-<li><p>Code :</p>
-<ul>
-<li>Creation of the QActionCustom class for a multiple management of bubble info.</li>
-<li>Correction of a bug when canceling the work in progress.</li>
-<li>Added python3-psutil to pause processes.</li>
-<li>Completely replaced the pause function which now pauses running tasks.</li>
-<li>Updated the list of codecs.</li>
-<li>Improved extraction of chapters and tags.</li>
-<li>Removed blocking when there is a " in the mkv file name.</li>
-<li>Removed Path, disk_usage, shutil and time dependencies in favor of the possibilities offered by Qt.</li>
-<li>Modification of the reboot via a right click on the quit button.</li>
-<li>Redesigned the file and folder selection system.</li>
-<li>Checking the presence of modules at startup.</li>
-<li>Fixed "libpng warning: iCCP: known incorrect sRGB profile" bug.</li>
-<li>Redesign of the subtitle conversion system.</li>
-<li>Added verification of the existence of the files necessary for the various commands before their execution.</li>
-<li>The temporary files system has been revised.</li>
-<li>Added many checks before or after execution of commands.</li>
-<li>Update the detection of the software folder.</li>
-</ul>
-</li>
-<li><p>Translations:</p>
-<ul>
-<li>Added Spanish language.</li>
-<li>Updated the French translation.</li>
-<li>Translation of QFileDialogCustom, the file/folder selector.</li>
-<li>Moved translations to a subfolder.</li>
-</ul>
-</li>
-</ul>
-            </description>
-        </release>
-        <release version="5.5.10" date="2022-04-27"/>
-    </releases>
+      </li>
+      <li>Vérifier la conformité du fichier matroska (mkv) via mkvalidator.</li>
+      <li>Optimiser le fichier matroska (mkv) via mkclean.</li>
+      <li>Visualiser (ectration + lancement) les pièces jointes au fichier matroska (mkv).</li>
+      <li>Convertir automatiquement un fichier vobsub en srt via tesseract avec multi cpu.</li>
+    </ul>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://user-images.githubusercontent.com/48289933/138563203-081bf6b5-61d9-49bf-9d32-52494414c5b1.png</image>
+    </screenshot>
+  </screenshots>
+  <screenshots xml:lang="fr">
+    <screenshot type="default">
+      <image>https://user-images.githubusercontent.com/48289933/138563147-9bf32ec0-674f-4fb1-88b2-377d43b9e5de.png</image>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>AudioVideo</category>
+    <category>AudioVideoEditing</category>
+  </categories>
+  <url type="homepage">https://github.com/Hizoka76/MKV-Extractor-Qt5</url>
+  <url type="bugtracker">https://github.com/Hizoka76/MKV-Extractor-Qt5/issues</url>
+  <developer_name>Hizoka</developer_name>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="22.08.13" date="2022-08-14">
+      <description>
+        <ul>
+          <li>Added Turkish language.</li>
+          <li>Simplification of the language loading system.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="22.08.08" date="2022-08-08">
+      <description>
+        <ul>
+          <li>
+            <p>Extractions:</p>
+            <ul>
+              <li>Extracts each time the attached files you want to display to avoid displaying an old file.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Software:</p>
+            <ul>
+              <li>Added search for mkvtoolnix-gui in addition to mmg.</li>
+              <li>Changed the term mmg to MKVToolNix-Gui.</li>
+              <li>Added the address configuration of MKVExtract and MKVMerge.</li>
+              <li>Live management when modifying software addresses.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Graphical interface:</p>
+            <ul>
+              <li>Adjustments to the help texts.</li>
+              <li>Fixed illogicalities in the status of actions in different circumstances.</li>
+              <li>Added an option to minimize the window when closing it with the cross (or with alt+F4).</li>
+              <li>No longer keeps the "Use FFMpeg" option in memory.</li>
+              <li>When opening pre-encapsulated subtitles, a blocking waiting window is displayed.</li>
+              <li>Added statustip to track list headers.</li>
+              <li>Bolded the options whose value differs from the default one.</li>
+              <li>Automatic activation of the reencapsulation, audio conversion and subtitle conversion buttons when a sub-option is activated.</li>
+              <li>Redesigned the subtitle conversion system.</li>
+              <li>Moved the temporary files cleaning option to the global options.</li>
+              <li>Possibility to open avi files (with conversion to mkv).</li>
+              <li>Modification of the radio buttons, to uncheck them, you have to click on the active one.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Code :</p>
+            <ul>
+              <li>Creation of the QActionCustom class for a multiple management of bubble info.</li>
+              <li>Correction of a bug when canceling the work in progress.</li>
+              <li>Added python3-psutil to pause processes.</li>
+              <li>Completely replaced the pause function which now pauses running tasks.</li>
+              <li>Updated the list of codecs.</li>
+              <li>Improved extraction of chapters and tags.</li>
+              <li>Removed blocking when there is a " in the mkv file name.</li>
+              <li>Removed Path, disk_usage, shutil and time dependencies in favor of the possibilities offered by Qt.</li>
+              <li>Modification of the reboot via a right click on the quit button.</li>
+              <li>Redesigned the file and folder selection system.</li>
+              <li>Checking the presence of modules at startup.</li>
+              <li>Fixed "libpng warning: iCCP: known incorrect sRGB profile" bug.</li>
+              <li>Redesign of the subtitle conversion system.</li>
+              <li>Added verification of the existence of the files necessary for the various commands before their execution.</li>
+              <li>The temporary files system has been revised.</li>
+              <li>Added many checks before or after execution of commands.</li>
+              <li>Update the detection of the software folder.</li>
+            </ul>
+          </li>
+          <li>
+            <p>Translations:</p>
+            <ul>
+              <li>Added Spanish language.</li>
+              <li>Updated the French translation.</li>
+              <li>Translation of QFileDialogCustom, the file/folder selector.</li>
+              <li>Moved translations to a subfolder.</li>
+            </ul>
+          </li>
+        </ul>
+      </description>
+    </release>
+    <release version="5.5.10" date="2022-04-27" />
+  </releases>
 </component>
