@@ -86,6 +86,7 @@
     <developer_name>Hizoka</developer_name>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="22.08.13" date="2022-08-14"/>
         <release version="22.08.08" date="2022-08-08">
             <description>
 <ul>
@@ -107,7 +108,7 @@
 <li>Adjustments to the help texts.</li>
 <li>Fixed illogicalities in the status of actions in different circumstances.</li>
 <li>Added an option to minimize the window when closing it with the cross (or with alt+F4).</li>
-<li>No longer keeps the &quot;Use FFMpeg&quot; option in memory.</li>
+<li>No longer keeps the "Use FFMpeg" option in memory.</li>
 <li>When opening pre-encapsulated subtitles, a blocking waiting window is displayed.</li>
 <li>Added statustip to track list headers.</li>
 <li>Bolded the options whose value differs from the default one.</li>
@@ -126,12 +127,12 @@
 <li>Completely replaced the pause function which now pauses running tasks.</li>
 <li>Updated the list of codecs.</li>
 <li>Improved extraction of chapters and tags.</li>
-<li>Removed blocking when there is a &quot; in the mkv file name.</li>
+<li>Removed blocking when there is a " in the mkv file name.</li>
 <li>Removed Path, disk_usage, shutil and time dependencies in favor of the possibilities offered by Qt.</li>
 <li>Modification of the reboot via a right click on the quit button.</li>
 <li>Redesigned the file and folder selection system.</li>
 <li>Checking the presence of modules at startup.</li>
-<li>Fixed &quot;libpng warning: iCCP: known incorrect sRGB profile&quot; bug.</li>
+<li>Fixed "libpng warning: iCCP: known incorrect sRGB profile" bug.</li>
 <li>Redesign of the subtitle conversion system.</li>
 <li>Added verification of the existence of the files necessary for the various commands before their execution.</li>
 <li>The temporary files system has been revised.</li>

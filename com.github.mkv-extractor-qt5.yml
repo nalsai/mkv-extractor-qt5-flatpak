@@ -341,12 +341,13 @@ modules:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
         #tag: v22.08.08
-        commit: eedab52b6ccb5b4841a25c173913cfe3d6656d39
+        commit: 5a058dd6977fbbe2fc59b14a99fc599edb6ea767
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
             '>': 22.08.08
+        tag: v22.08.13
       - type: shell
         commands:
           - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
