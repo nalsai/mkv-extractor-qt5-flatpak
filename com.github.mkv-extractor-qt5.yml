@@ -220,8 +220,8 @@ modules:
         README.md
     sources:
       - type: archive
-        url: https://mkvtoolnix.download/sources/mkvtoolnix-69.0.0.tar.xz
-        sha256: 8bad39de495be6e77346cffb4c334c5195edec1a2d79a27ba01b7a372db180aa
+        url: https://mkvtoolnix.download/sources/mkvtoolnix-70.0.0.tar.xz
+        sha256: 64324b7ee6b4aa6fab5f517ca93667d12260a4ea92ea80b97575beda3a91693a
         x-checker-data:
           type: anitya
           project-id: 1991
@@ -244,8 +244,8 @@ modules:
       - install -m0644 -t/app/share/doc/cmark COPYING README.md
     sources:
       - type: archive
-        url: https://mkvtoolnix.download/sources/mkvtoolnix-69.0.0.tar.xz
-        sha256: 8bad39de495be6e77346cffb4c334c5195edec1a2d79a27ba01b7a372db180aa
+        url: https://mkvtoolnix.download/sources/mkvtoolnix-70.0.0.tar.xz
+        sha256: 64324b7ee6b4aa6fab5f517ca93667d12260a4ea92ea80b97575beda3a91693a
         x-checker-data:
           type: anitya
           project-id: 1991
@@ -341,13 +341,13 @@ modules:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
         #tag: v22.08.08
-        commit: 5a058dd6977fbbe2fc59b14a99fc599edb6ea767
+        commit: 0f371743292a38abfec01fba4f6b0b90f809569f
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
             '>': 22.08.08
-        tag: v22.08.13
+        tag: v22.08.14
       - type: shell
         commands:
           - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
