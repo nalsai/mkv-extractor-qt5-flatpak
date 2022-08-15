@@ -86,8 +86,14 @@
   <developer_name>Hizoka</developer_name>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="22.08.14" date="2022-08-15"/>
-    <release version="22.08.13" date="2022-08-14">
+    <release version="22.08.14" date="2022-08-14">
+        <ul>
+          <li>Turkish language updated.</li>
+          <li>Bug fixed.</li>
+          <li>Audio progress bar fixed.</li>
+        </ul>
+    </release>
+    <release version="22.08.13" date="2022-08-13">
       <description>
         <ul>
           <li>Added Turkish language.</li>
