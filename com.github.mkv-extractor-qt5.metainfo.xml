@@ -86,6 +86,24 @@
   <developer_name>Hizoka</developer_name>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="22.08.24" date="2022-08-24">
+        <ul>
+          <li>Added new fps in the list of video tracks.</li>
+          <li>Improved the file/folder selector.</li>
+          <li>Improved logic and limited multiple calls to functions.</li>
+          <li>Fixed a bug when resetting configs.</li>
+          <li>Improved the temporary folder creation function.</li>
+          <li>Fixed disappearance of return block when systray is used to hide the window.</li>
+          <li>Linking of the return display buttons and its anchoring.</li>
+          <li>Use of radiobutton for graphic styles.</li>
+          <li>Improved the error returns of the commands.</li>
+        </ul>
+    </release>
+    <release version="22.08.16" date="2022-08-16">
+        <ul>
+          <li>Added tests when reading order returns.</li>
+        </ul>
+    </release>
     <release version="22.08.14" date="2022-08-14">
         <ul>
           <li>Turkish language updated.</li>
