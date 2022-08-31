@@ -86,6 +86,7 @@
   <developer_name>Hizoka</developer_name>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="22.08.30" date="2022-08-31"/>
     <release version="22.08.24" date="2022-08-24">
         <ul>
           <li>Added new fps in the list of video tracks.</li>
