@@ -339,8 +339,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
-        tag: v22.08.24
-        commit: 9c1823751a768c4833fec11e819ef790c4a4a79d
+        tag: v22.08.30
+        commit: bad90bb124852a31419615c1a8ce3719073e5c1b
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
