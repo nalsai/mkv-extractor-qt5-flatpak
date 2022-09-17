@@ -15,7 +15,7 @@ flatpak install https://flatpak.nils.moe/com.github.mkv-extractor-qt5.flatpakref
 You also need to install the ffmepg extension:
 
 ```bash
-flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//22.08
 ```
 
 ## Building
@@ -23,6 +23,6 @@ flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
 ### Install SDK, Platform and ffmpeg Extension
 
 ```bash
-flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//22.08
 flatpak-builder --install-deps-from=flathub --force-clean build-dir com.github.mkv-extractor-qt5.yml
 ```
