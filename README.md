@@ -9,7 +9,7 @@
 I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there like this:
 
 ```bash
-flatpak install https://flatpak.nils.moe/com.github.mkv-extractor-qt5.flatpakref
+flatpak install https://flatpak.nils.moe/repo/appstream/com.github.mkv-extractor-qt5.flatpakref
 ```
 
 You also need to install the ffmepg extension:
