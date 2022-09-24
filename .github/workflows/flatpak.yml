@@ -12,6 +12,11 @@ jobs:
     container:
       image: bilelmoussaoui/flatpak-github-actions:kde-5.15-21.08
       options: --privileged
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+      # Don't fail the whole workflow if one architecture fails
+      fail-fast: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -21,4 +26,12 @@ jobs:
           bundle:  com.github.mkv-extractor-qt5.flatpak
           manifest-path: com.github.mkv-extractor-qt5.yml
           cache-key: flatpak-builder-${{ github.sha }}
+          arch: ${{ matrix.arch }}
+          branch: stable
+      - name: Deploy
+        uses: bilelmoussaoui/flatpak-github-actions/flat-manager@v3
+        with:
+          repository: ""
+          flat-manager-url: https://flatpak.hachiman.nils.moe
+          token: ${{ secrets.FLATMAN_TOKEN }}
 
