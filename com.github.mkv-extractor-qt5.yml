@@ -1,6 +1,6 @@
 app-id: com.github.mkv-extractor-qt5
 runtime: org.kde.Platform
-runtime-version: '5.15-22.08'
+runtime-version: 5.15-22.08
 sdk: org.kde.Sdk
 command: mkv-extractor-qt5
 default-branch: stable
@@ -144,8 +144,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ImageMagick/ImageMagick
-        tag: 7.1.0-48
-        commit: c243c92818c376315650f6d8340e7e62e9a14a9e
+        tag: 7.1.0-49
+        commit: 7a3f3f1bdbcc95a212a45484fab76225d84e289c
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+-\d+)$
