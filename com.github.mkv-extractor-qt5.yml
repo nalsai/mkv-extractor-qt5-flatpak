@@ -5,8 +5,6 @@ sdk: org.kde.Sdk
 command: mkv-extractor-qt5
 default-branch: stable
 rename-icon: mkv-extractor-qt5
-#rename-desktop-file not needed, already gets installed with correct name (l.179)
-#rename-appdata-file: mkv-extractor-qt5
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
@@ -33,190 +31,13 @@ finish-args:
   - --device=dri
   - --filesystem=home
 modules:
-  - name: pyqt5
-    config-opts:
-      - --disable-static
-      - --enable-x11
-      - --enable-wayland
-    buildsystem: simple
-    build-commands:
-      - >-
-        PYVER=$(python3 -c "import sys;print(sys.version_info[1])") &&
-        QMAKEPATH=/app/lib python3 configure.py --confirm-license
-        --no-designer-plugin --bindir=/app/bin
-        --destdir=/app/lib/python3.${PYVER}/site-packages
-        --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip
-        --stubsdir=/app/lib/python3.${PYVER}/site-packages/PyQt5
-      - make -j $FLATPAK_BUILDER_N_JOBS
-      - make install
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/72/bf/4e7c66eefa9ede1ec01d065d220373667f4ca3285a83a6430eefc254904c/PyQt5-5.15.5.tar.gz
-        sha256: b411b7a8fa03901c9feb1dcbac7ea1fc3ce20b9ae682762b777cd5398749ca2b
-        x-checker-data:
-          type: pypi
-          name: PyQt5
-          versions:
-            ==: 5.15.5
-    cleanup:
-      - /bin
-    modules:
-      - name: toml
-        buildsystem: simple
-        build-commands:
-          - python3 setup.py install --prefix=/app --root=/
-        sources:
-          - type: archive
-            url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
-            sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
-            x-checker-data:
-              type: pypi
-              name: toml
-        cleanup:
-          - /bin
-      - name: packaging
-        buildsystem: simple
-        build-commands:
-          - python3 setup.py install --prefix=/app --root=/
-        sources:
-          - type: archive
-            url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
-            sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
-            x-checker-data:
-              type: pypi
-              name: packaging
-        cleanup:
-          - /bin
-      - name: pyparsing
-        buildsystem: simple
-        build-commands:
-          - python3 setup.py install --prefix=/app --root=/
-        sources:
-          - type: archive
-            url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
-            sha256: c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1
-            x-checker-data:
-              type: pypi
-              name: pyparsing
-              versions:
-                <: 3.0.0a1
-        cleanup:
-          - /bin
-      - name: sip
-        buildsystem: simple
-        build-commands:
-          - python3 setup.py install --prefix=/app --root=/
-        sources:
-          - type: archive
-            url: https://files.pythonhosted.org/packages/33/e9/27730ac17713c0a80d81d8f3bb56213f1549d96f9dc183fd16a7eec6287c/sip-5.5.0.tar.gz
-            sha256: 5d024c419b30fea8a6de8c71a560c7ab0bc3c221fbfb14d55a5b865bd58eaac5
-            x-checker-data:
-              type: pypi
-              name: sip
-              versions:
-                <: 6.0.0
-        cleanup:
-          - /bin
-      - name: PyQt5_sip
-        buildsystem: simple
-        build-commands:
-          - python3 setup.py install --prefix=/app --root=/
-        sources:
-          - type: archive
-            url: https://files.pythonhosted.org/packages/a3/82/08a09deda701feb930aa6462f2f22e07cbcb9aa7c1ef361a090221b4587e/PyQt5_sip-12.10.1.tar.gz
-            sha256: 97e008795c453488f51a5c97dbff29cda7841afb1ca842c9e819d8e6cc0ae724
-            x-checker-data:
-              type: pypi
-              name: PyQt5_sip
-              versions:
-                ==: 12.10.1
-        cleanup:
-          - /bin
-
-  - name: imagemagick
-    config-opts:
-      - --enable-static=yes
-      - --disable-docs
-      - --with-png
-      - --with-jpeg
-      - --with-zlib
-      - --enable-zero-configuration
-    sources:
-      - type: git
-        url: https://github.com/ImageMagick/ImageMagick
-        tag: 7.1.0-51
-        commit: aea87b538fdb0e464ac3bbc7941127119baac5dd
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+-\d+)$
-
-  - name: drake
-    buildsystem: simple
-    build-commands:
-      - mkdir /app/gems
-      - GEM_HOME=/app/gems gem install comp_tree-1.1.3.gem
-      - GEM_HOME=/app/gems gem install drake-0.9.2.0.3.1.gem
-    sources:
-      - type: file
-        url: https://rubygems.org/downloads/comp_tree-1.1.3.gem
-        sha256: a9260f397f42e36de62764a8fe7e68bdbbcc75674d0419e831f633d6dda44936
-        x-checker-data:
-          type: anitya
-          project-id: 4687
-          stable-only: true
-          url-template: https://rubygems.org/downloads/comp_tree-$version.gem
-      - type: file
-        url: https://rubygems.org/downloads/drake-0.9.2.0.3.1.gem
-        sha256: 4f7983a69720d6cc3427a137b31b0737b63033d96d80d8dbb4ad360e75abf325
-        x-checker-data:
-          type: anitya
-          project-id: 4649
-          stable-only: true
-          url-template: https://rubygems.org/downloads/drake-$version.gem
-
-  - name: boost
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/include
-      - cp -R boost /app/include
-    sources:
-      - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
-        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
-        x-checker-data:
-          type: anitya
-          project-id: 6845
-          stable-only: true
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/$major.$minor.$patch/source/boost_${major}_${minor}_$patch.tar.bz2
-
-  - name: cmark
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMARK_STATIC=OFF
-    cleanup:
-      - /bin
-    sources:
-      - type: archive
-        url: https://github.com/commonmark/cmark/archive/refs/tags/0.30.2.tar.gz
-        sha256: 6c7d2bcaea1433d977d8fed0b55b71c9d045a7cdf616e3cd2dce9007da753db3
-        x-checker-data:
-          type: anitya
-          project-id: 9159
-          stable-only: true
-          url-template: https://github.com/commonmark/cmark/archive/refs/tags/$version.tar.gz
-
   - name: mkvtoolnix
     buildsystem: simple
     build-commands:
-      - ./configure --enable-optimization --enable-debug --prefix=/app --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
-        --disable-update-check
+      - ./configure --prefix=/app --enable-optimization --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets --disable-update-check
       - GEM_HOME=/app/gems /app/gems/bin/drake -j $FLATPAK_BUILDER_N_JOBS
       - GEM_HOME=/app/gems /app/gems/bin/drake install
-      - mkdir -p /app/share/doc/mkvtoolnix
-      - install -m0644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING
-        README.md
+      - install -Dm644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING README.md
     sources:
       - type: archive
         url: https://mkvtoolnix.download/sources/mkvtoolnix-71.1.0.tar.xz
@@ -226,116 +47,78 @@ modules:
           project-id: 1991
           stable-only: true
           url-template: https://mkvtoolnix.download/sources/mkvtoolnix-$version.tar.xz
-
-  - name: mkvtoolnix-wrapper
-    buildsystem: simple
-    build-commands:
-      - install -m0755 entrypoint.sh /app/bin/mkvtoolnix
-    sources:
-      - type: file
-        url: https://raw.githubusercontent.com/flathub/org.bunkus.mkvtoolnix-gui/master/entrypoint.sh
-        sha256: 4f98f467b575bb5ed444f64b821e4cadc8a585864545a25dcdd5927e702e35db
-
-  - name: cmark-docs
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/share/doc/cmark
-      - install -m0644 -t/app/share/doc/cmark COPYING README.md
-    sources:
-      - type: archive
-        url: https://mkvtoolnix.download/sources/mkvtoolnix-71.1.0.tar.xz
-        sha256: 153443e583c29ca9016879dc558503b426494c47934ef8a32265adcb52cfca47
-        x-checker-data:
-          type: anitya
-          project-id: 1991
-          stable-only: true
-          url-template: https://mkvtoolnix.download/sources/mkvtoolnix-$version.tar.xz
-
-  - name: bdsup2subpp
-    buildsystem: meson
-    sources:
-      - type: git
-        url: https://github.com/TheGreatMcPain/BDSup2SubPlusPlus
-        commit: 48e0395ff2354bdbb320c2363eff28a92c6c5fe2
-        branch: meson
-
-  - name: mkclean
-    buildsystem: simple
-    build-commands:
-      - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
-      - make
-      - install -Dm755 mkclean/mkclean "/app/bin/mkclean"
-      - install -Dm644 ReadMe.txt "/app/share/licenses/mkclean/License.txt"
-    sources:
-      - type: archive
-        url: https://sourceforge.net/projects/matroska/files/mkclean/mkclean-0.9.0.tar.bz2
-        sha256: 2f5cdcab0e09b65f9fef8949a55ef00ee3dd700e4b4050e245d442347d7cc3db
-
-  - name: mkvalidator
-    buildsystem: simple
-    build-commands:
-      - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
-      - make
-      - install -Dm755 mkvalidator/mkvalidator "/app/bin/mkvalidator"
-      - install -Dm644 ReadMe.txt "/app/share/licenses/mkvalidator/License.txt"
-    sources:
-      - type: archive
-        url: https://sourceforge.net/projects/matroska/files/mkvalidator/mkvalidator-0.6.0.tar.bz2
-        sha256: f9eaa2138fade7103e6df999425291d2947c5355294239874041471e3aa243f0
-
-  - name: qtesseract5
-    buildsystem: simple
-    build-commands:
-      - chmod +x build.sh
-      - ./build.sh
-      - ln -s /app/share/qtesseract5/Qtesseract5.py "/app/bin/qtesseract5"
-      - install -Dm755 Qtesseract5.py "/app/share/qtesseract5/Qtesseract5.py"
-      - install -Dm644 Qtesseract5Ressources_rc.py "/app/share/qtesseract5/Qtesseract5Ressources_rc.py"
-      - install -Dm644 langcodes.py "/app/share/qtesseract5/langcodes.py"
-      - install -Dm644 Qtesseract5_en_EN.qm "/app/share/qtesseract5/Qtesseract5_en_EN.qm"
-      - install -Dm644 Qtesseract5_fr_FR.qm "/app/share/qtesseract5/Qtesseract5_fr_FR.qm"
-      - install -Dm644 Qtesseract5_cs_CZ.qm "/app/share/qtesseract5/Qtesseract5_cs_CZ.qm"
-      - install -Dm644 WhatsUp/WhatsUp.py "/app/share/qtesseract5/WhatsUp/WhatsUp.py"
-      - install -Dm644 man/qtesseract5.1 "/app/share/man/man1/qtesseract5.1"
-      - install -Dm644 man/qtesseract5.fr.1 "/app/share/man/fr/man1/qtesseract5.1"
-      - install -Dm644 qtesseract5.desktop "/app/share/applications/qtesseract5.desktop"
-      #- install -Dm644 "AUR/qtesseract5.svgz" "/app/share/icons/hicolor/scalable/apps/qtesseract5.svgz"
-    sources:
-      - type: git
-        url: https://github.com/Hizoka76/QTesseract5
-        commit: 40aecb5b00aabc36111b758464b73117a79f9bc5
-        branch: main
-      - type: shell
-        commands:
-          - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
-            -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i
-            build.sh
+    modules:
+      - name: drake
+        buildsystem: simple
+        build-commands:
+          - mkdir /app/gems
+          - GEM_HOME=/app/gems gem install comp_tree-1.1.3.gem
+          - GEM_HOME=/app/gems gem install drake-0.9.2.0.3.1.gem
+        sources:
+          - type: file
+            url: https://rubygems.org/downloads/comp_tree-1.1.3.gem
+            sha256: a9260f397f42e36de62764a8fe7e68bdbbcc75674d0419e831f633d6dda44936
+            x-checker-data:
+              type: anitya
+              project-id: 4687
+              stable-only: true
+              url-template: https://rubygems.org/downloads/comp_tree-$version.gem
+          - type: file
+            url: https://rubygems.org/downloads/drake-0.9.2.0.3.1.gem
+            sha256: 4f7983a69720d6cc3427a137b31b0737b63033d96d80d8dbb4ad360e75abf325
+            x-checker-data:
+              type: anitya
+              project-id: 4649
+              stable-only: true
+              url-template: https://rubygems.org/downloads/drake-$version.gem
+      - name: boost
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/include
+          - mv boost /app/include
+        sources:
+          - type: archive
+            url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+            sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
+            x-checker-data:
+              type: anitya
+              project-id: 6845
+              stable-only: true
+              url-template: https://boostorg.jfrog.io/artifactory/main/release/$major.$minor.$patch/source/boost_${major}_${minor}_$patch.tar.bz2
+      - name: cmark
+        buildsystem: cmake-ninja
+        builddir: true
+        config-opts:
+          - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          - -DCMARK_STATIC=OFF
+        cleanup:
+          - /bin
+        sources:
+          - type: archive
+            url: https://github.com/commonmark/cmark/archive/refs/tags/0.30.2.tar.gz
+            sha256: 6c7d2bcaea1433d977d8fed0b55b71c9d045a7cdf616e3cd2dce9007da753db3
+            x-checker-data:
+              type: anitya
+              project-id: 9159
+              stable-only: true
+              url-template: https://github.com/commonmark/cmark/archive/refs/tags/$version.tar.gz
 
   - name: mkv-extractor-qt5
     buildsystem: simple
     build-commands:
       - chmod +x build.sh
       - ./build.sh
-      - install -d "/app/bin"
-      - ln -s "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py" "/app/bin/mkv-extractor-qt5"
-      - install -Dm755 MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/MKVExtractorQt5.py"
-      - install -Dm644 CodecListFile.py "/app/share/mkv-extractor-qt5/CodecListFile.py"
-      - mkdir /app/share/mkv-extractor-qt5/Languages
-      - install -Dm644 Languages/*.qm "/app/share/mkv-extractor-qt5/Languages"
-      - install -Dm644 MKVRessources_rc.py "/app/share/mkv-extractor-qt5/MKVRessources_rc.py"
-      - install -Dm644 ui_MKVExtractorQt5.py "/app/share/mkv-extractor-qt5/ui_MKVExtractorQt5.py"
-      - install -Dm644 QFileDialogCustom/QFileDialogCustom.py "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom.py"
-      - install -Dm644 QFileDialogCustom/QFileDialogCustom_cs_CZ.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_cs_CZ.qm"
-      - install -Dm644 QFileDialogCustom/QFileDialogCustom_fr_FR.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_fr_FR.qm"
-      - install -Dm644 QFileDialogCustom/QFileDialogCustom_es_ES.qm "/app/share/mkv-extractor-qt5/QFileDialogCustom/QFileDialogCustom_es_ES.qm"
-      - install -Dm644 WhatsUp/WhatsUp.py "/app/share/mkv-extractor-qt5/WhatsUp/WhatsUp.py"
-      - mkdir /app/share/mkv-extractor-qt5/img
-      - install -Dm644 img/* "/app/share/mkv-extractor-qt5/img"
-      - install -Dm644 mkv-extractor-qt5.desktop "/app/share/applications/com.github.mkv-extractor-qt5.desktop"
-      - install -Dm644 icons/mkv-extractor-qt5.svg "/app/share/icons/hicolor/scalable/apps/mkv-extractor-qt5.svg"
-      - install -Dm644 man/mkv-extractor-qt5.1 "/app/share/man/man1/mkv-extractor-qt.1"
-      - install -Dm644 man/mkv-extractor-qt5.fr.1 "/app/share/man/fr/man1/mkv-extractor-qt.1"
-      - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml /app/share/appdata/com.github.mkv-extractor-qt5.metainfo.xml
+      - ln -s /app/share/mkv-extractor-qt5/MKVExtractorQt5.py /app/bin/mkv-extractor-qt5
+      - install -Dm755 MKVExtractorQt5.py -t /app/share/mkv-extractor-qt5
+      - install -Dm644 CodecListFile.py MKVRessources_rc.py ui_MKVExtractorQt5.py -t /app/share/mkv-extractor-qt5
+      - install -Dm644 Languages/*.qm -t /app/share/mkv-extractor-qt5/Languages
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom.py QFileDialogCustom/QFileDialogCustom_cs_CZ.qm QFileDialogCustom/QFileDialogCustom_fr_FR.qm QFileDialogCustom/QFileDialogCustom_es_ES.qm -t /app/share/mkv-extractor-qt5/QFileDialogCustom
+      - install -Dm644 WhatsUp/WhatsUp.py -t /app/share/mkv-extractor-qt5/WhatsUp
+      - install -Dm644 img/* -t /app/share/mkv-extractor-qt5/img
+      - install -Dm644 icons/mkv-extractor-qt5.svg -t /app/share/icons/hicolor/scalable/apps
+      - install -Dm644 man/mkv-extractor-qt5.1 man/mkv-extractor-qt5.fr.1 -t /app/share/man/man1
+      - install -Dm644 mkv-extractor-qt5.desktop /app/share/applications/com.github.mkv-extractor-qt5.desktop
+      - install -Dm644 com.github.mkv-extractor-qt5.metainfo.xml -t /app/share/appdata
     sources:
       - type: git
         url: https://github.com/Hizoka76/MKV-Extractor-Qt5/
@@ -352,3 +135,166 @@ modules:
           - sed 's|BDSup2Sub.jar|bdsup2sub++|g' -i MKVExtractorQt5.py
       - type: file
         path: com.github.mkv-extractor-qt5.metainfo.xml
+    modules:
+      - name: pyqt5
+        config-opts:
+          - --disable-static
+          - --enable-x11
+          - --enable-wayland
+        buildsystem: simple
+        build-commands:
+          - >-
+            PYVER=$(python3 -c "import sys;print(sys.version_info[1])") &&
+            QMAKEPATH=/app/lib python3 configure.py --confirm-license
+            --no-designer-plugin --bindir=/app/bin
+            --destdir=/app/lib/python3.${PYVER}/site-packages
+            --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip
+            --stubsdir=/app/lib/python3.${PYVER}/site-packages/PyQt5
+          - make -j $FLATPAK_BUILDER_N_JOBS
+          - make install
+        sources:
+          - type: archive
+            url: https://files.pythonhosted.org/packages/72/bf/4e7c66eefa9ede1ec01d065d220373667f4ca3285a83a6430eefc254904c/PyQt5-5.15.5.tar.gz
+            sha256: b411b7a8fa03901c9feb1dcbac7ea1fc3ce20b9ae682762b777cd5398749ca2b
+            x-checker-data:
+              type: pypi
+              name: PyQt5
+              versions:
+                ==: 5.15.5
+        cleanup:
+          - /bin
+        modules:
+          - name: toml
+            buildsystem: simple
+            build-commands:
+              - python3 setup.py install --prefix=/app --root=/
+            sources:
+              - type: archive
+                url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
+                sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
+                x-checker-data:
+                  type: pypi
+                  name: toml
+            cleanup:
+              - /bin
+          - name: packaging
+            buildsystem: simple
+            build-commands:
+              - python3 setup.py install --prefix=/app --root=/
+            sources:
+              - type: archive
+                url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
+                sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
+                x-checker-data:
+                  type: pypi
+                  name: packaging
+            cleanup:
+              - /bin
+          - name: pyparsing
+            buildsystem: simple
+            build-commands:
+              - python3 setup.py install --prefix=/app --root=/
+            sources:
+              - type: archive
+                url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
+                sha256: c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1
+                x-checker-data:
+                  type: pypi
+                  name: pyparsing
+                  versions:
+                    <: 3.0.0a1
+            cleanup:
+              - /bin
+          - name: sip
+            buildsystem: simple
+            build-commands:
+              - python3 setup.py install --prefix=/app --root=/
+            sources:
+              - type: archive
+                url: https://files.pythonhosted.org/packages/33/e9/27730ac17713c0a80d81d8f3bb56213f1549d96f9dc183fd16a7eec6287c/sip-5.5.0.tar.gz
+                sha256: 5d024c419b30fea8a6de8c71a560c7ab0bc3c221fbfb14d55a5b865bd58eaac5
+                x-checker-data:
+                  type: pypi
+                  name: sip
+                  versions:
+                    <: 6.0.0
+            cleanup:
+              - /bin
+          - name: PyQt5_sip
+            buildsystem: simple
+            build-commands:
+              - python3 setup.py install --prefix=/app --root=/
+            sources:
+              - type: archive
+                url: https://files.pythonhosted.org/packages/a3/82/08a09deda701feb930aa6462f2f22e07cbcb9aa7c1ef361a090221b4587e/PyQt5_sip-12.10.1.tar.gz
+                sha256: 97e008795c453488f51a5c97dbff29cda7841afb1ca842c9e819d8e6cc0ae724
+                x-checker-data:
+                  type: pypi
+                  name: PyQt5_sip
+                  versions:
+                    ==: 12.10.1
+            cleanup:
+              - /bin
+      - name: imagemagick
+        config-opts:
+          - --enable-static=yes
+          - --disable-docs
+          - --with-png
+          - --with-jpeg
+          - --with-zlib
+          - --enable-zero-configuration
+        sources:
+          - type: git
+            url: https://github.com/ImageMagick/ImageMagick
+            tag: 7.1.0-51
+            commit: aea87b538fdb0e464ac3bbc7941127119baac5dd
+            x-checker-data:
+              type: git
+              tag-pattern: ^([\d.]+-\d+)$
+      - name: bdsup2subpp
+        buildsystem: meson
+        sources:
+          - type: git
+            url: https://github.com/TheGreatMcPain/BDSup2SubPlusPlus
+            commit: 48e0395ff2354bdbb320c2363eff28a92c6c5fe2
+            branch: meson
+      - name: mkclean
+        buildsystem: simple
+        build-commands:
+          - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
+          - make
+          - install -Dm755 mkclean/mkclean "/app/bin/mkclean"
+          - install -Dm644 ReadMe.txt "/app/share/licenses/mkclean/License.txt"
+        sources:
+          - type: archive
+            url: https://sourceforge.net/projects/matroska/files/mkclean/mkclean-0.9.0.tar.bz2
+            sha256: 2f5cdcab0e09b65f9fef8949a55ef00ee3dd700e4b4050e245d442347d7cc3db
+      - name: mkvalidator
+        buildsystem: simple
+        build-commands:
+          - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app ./
+          - make
+          - install -Dm755 mkvalidator/mkvalidator "/app/bin/mkvalidator"
+          - install -Dm644 ReadMe.txt "/app/share/licenses/mkvalidator/License.txt"
+        sources:
+          - type: archive
+            url: https://sourceforge.net/projects/matroska/files/mkvalidator/mkvalidator-0.6.0.tar.bz2
+            sha256: f9eaa2138fade7103e6df999425291d2947c5355294239874041471e3aa243f0
+      - name: qtesseract5
+        buildsystem: simple
+        build-commands:
+          - chmod +x build.sh
+          - ./build.sh
+          - ln -s /app/share/qtesseract5/Qtesseract5.py /app/bin/qtesseract5
+          - install -Dm755 Qtesseract5.py -t /app/share/qtesseract5
+          - install -Dm644 Qtesseract5Ressources_rc.py langcodes.py Qtesseract5_en_EN.qm Qtesseract5_fr_FR.qm Qtesseract5_cs_CZ.qm -t /app/share/qtesseract5
+          - install -Dm644 WhatsUp/WhatsUp.py -t /app/share/qtesseract5/WhatsUp
+          - install -Dm644 man/qtesseract5.1 man/qtesseract5.fr.1 -t /app/share/man/man1/qtesseract5.1
+        sources:
+          - type: git
+            url: https://github.com/Hizoka76/QTesseract5
+            commit: 40aecb5b00aabc36111b758464b73117a79f9bc5
+            branch: main
+          - type: shell
+            commands:
+              - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
