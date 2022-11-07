@@ -34,10 +34,12 @@ modules:
   - name: mkvtoolnix
     buildsystem: simple
     build-commands:
-      - ./configure --prefix=/app --enable-optimization --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets --disable-update-check
+      - ./configure --prefix=/app --enable-optimization --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
+        --disable-update-check
       - GEM_HOME=/app/gems /app/gems/bin/drake -j $FLATPAK_BUILDER_N_JOBS
       - GEM_HOME=/app/gems /app/gems/bin/drake install
-      - install -Dm644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING README.md
+      - install -Dm644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING
+        README.md
     sources:
       - type: archive
         url: https://mkvtoolnix.download/sources/mkvtoolnix-71.1.0.tar.xz
@@ -110,9 +112,12 @@ modules:
       - ./build.sh
       - ln -s /app/share/mkv-extractor-qt5/MKVExtractorQt5.py /app/bin/mkv-extractor-qt5
       - install -Dm755 MKVExtractorQt5.py -t /app/share/mkv-extractor-qt5
-      - install -Dm644 CodecListFile.py MKVRessources_rc.py ui_MKVExtractorQt5.py -t /app/share/mkv-extractor-qt5
+      - install -Dm644 CodecListFile.py MKVRessources_rc.py ui_MKVExtractorQt5.py
+        -t /app/share/mkv-extractor-qt5
       - install -Dm644 Languages/*.qm -t /app/share/mkv-extractor-qt5/Languages
-      - install -Dm644 QFileDialogCustom/QFileDialogCustom.py QFileDialogCustom/QFileDialogCustom_cs_CZ.qm QFileDialogCustom/QFileDialogCustom_fr_FR.qm QFileDialogCustom/QFileDialogCustom_es_ES.qm -t /app/share/mkv-extractor-qt5/QFileDialogCustom
+      - install -Dm644 QFileDialogCustom/QFileDialogCustom.py QFileDialogCustom/QFileDialogCustom_cs_CZ.qm
+        QFileDialogCustom/QFileDialogCustom_fr_FR.qm QFileDialogCustom/QFileDialogCustom_es_ES.qm
+        -t /app/share/mkv-extractor-qt5/QFileDialogCustom
       - install -Dm644 WhatsUp/WhatsUp.py -t /app/share/mkv-extractor-qt5/WhatsUp
       - install -Dm644 img/* -t /app/share/mkv-extractor-qt5/img
       - install -Dm644 icons/mkv-extractor-qt5.svg -t /app/share/icons/hicolor/scalable/apps
@@ -246,8 +251,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.0-51
-            commit: aea87b538fdb0e464ac3bbc7941127119baac5dd
+            tag: 7.1.0-52
+            commit: 04ee6cec572251279db13cba52a59eaef12f5652
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
@@ -287,7 +292,8 @@ modules:
           - ./build.sh
           - ln -s /app/share/qtesseract5/Qtesseract5.py /app/bin/qtesseract5
           - install -Dm755 Qtesseract5.py -t /app/share/qtesseract5
-          - install -Dm644 Qtesseract5Ressources_rc.py langcodes.py Qtesseract5_en_EN.qm Qtesseract5_fr_FR.qm Qtesseract5_cs_CZ.qm -t /app/share/qtesseract5
+          - install -Dm644 Qtesseract5Ressources_rc.py langcodes.py Qtesseract5_en_EN.qm
+            Qtesseract5_fr_FR.qm Qtesseract5_cs_CZ.qm -t /app/share/qtesseract5
           - install -Dm644 WhatsUp/WhatsUp.py -t /app/share/qtesseract5/WhatsUp
           - install -Dm644 man/qtesseract5.1 man/qtesseract5.fr.1 -t /app/share/man/man1/qtesseract5.1
         sources:
@@ -297,4 +303,6 @@ modules:
             branch: main
           - type: shell
             commands:
-              - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g' -i build.sh
+              - sed -e 's|/usr/lib/x86_64-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
+                -e 's|/usr/lib/i386-linux-gnu/qt5/bin/lrelease|/usr/bin/lrelease|g'
+                -i build.sh
