@@ -188,8 +188,8 @@ modules:
               - python3 setup.py install --prefix=/app --root=/
             sources:
               - type: archive
-                url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
-                sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
+                url: https://files.pythonhosted.org/packages/6b/f7/c240d7654ddd2d2f3f328d8468d4f1f876865f6b9038b146bec0a6737c65/packaging-22.0.tar.gz
+                sha256: 2198ec20bd4c017b8f9717e00f0c8714076fc2fd93816750ab48e2c41de2cfd3
                 x-checker-data:
                   type: pypi
                   name: packaging
@@ -251,8 +251,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.0-53
-            commit: b0cc8e4ae2c8cf48f8e059dd34ecbeff00b11a9d
+            tag: 7.1.0-54
+            commit: f5cf5baadc0ff473322ce86098b4f2bd2ebd3e13
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
