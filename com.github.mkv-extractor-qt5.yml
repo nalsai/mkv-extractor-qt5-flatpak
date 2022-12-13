@@ -193,6 +193,8 @@ modules:
                 x-checker-data:
                   type: pypi
                   name: packaging
+                  versions:
+                    <: '22.0'
             cleanup:
               - /bin
           - name: pyparsing
