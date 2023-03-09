@@ -37,17 +37,13 @@ modules:
   - name: mkvtoolnix
     buildsystem: simple
     build-commands:
-      - ./configure
-        --enable-optimization
-        --enable-debug
-        --prefix=/app
-        --with-boost=/app
-        --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets
-        --disable-update-check
+      - ./configure --enable-optimization --enable-debug --prefix=/app --with-boost=/app
+        --with-docbook-xsl-root=/usr/share/xml/docbook/xml/xsl-stylesheets --disable-update-check
       - ./drake -j $FLATPAK_BUILDER_N_JOBS
       - ./drake install
       - mkdir -p /app/share/doc/mkvtoolnix
-      - install -m0644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING README.md
+      - install -m0644 -t/app/share/doc/mkvtoolnix AUTHORS CODE_OF_CONDUCT.md COPYING
+        README.md
       - mkdir -p /app/share/doc/cmark
       - install -m0644 -t/app/share/doc/cmark COPYING README.md
     sources:
@@ -260,8 +256,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.0-62
-            commit: 32ce406898b6f9992103cc0ee353f31a0e83f063
+            tag: 7.1.1-0
+            commit: 9009707d09287d168057cb6018b37b68dd586775
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
