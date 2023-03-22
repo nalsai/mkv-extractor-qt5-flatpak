@@ -256,8 +256,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.1-0
-            commit: 9009707d09287d168057cb6018b37b68dd586775
+            tag: 7.1.1-4
+            commit: 10ad43dc3e5113fa1969a55583a080c5a6a23f65
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
@@ -266,7 +266,7 @@ modules:
         sources:
           - type: git
             url: https://github.com/TheGreatMcPain/BDSup2SubPlusPlus
-            commit: 48e0395ff2354bdbb320c2363eff28a92c6c5fe2
+            commit: f035d1cd3b7e327d77bfefbc745b295b403c4927
             branch: meson
       - name: mkclean
         buildsystem: simple
