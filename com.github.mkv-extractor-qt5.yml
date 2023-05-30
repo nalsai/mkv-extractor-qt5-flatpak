@@ -256,8 +256,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.1-10
-            commit: fa1d7e6f1d026d1d70072b04a57857afdb47c29a
+            tag: 7.1.1-11
+            commit: 11ffa6eb4548644a718158daa286295ed3174054
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
