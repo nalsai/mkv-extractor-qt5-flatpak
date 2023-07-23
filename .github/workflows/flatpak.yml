@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v4
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
         with:
           bundle: com.github.mkv-extractor-qt5.flatpak
           manifest-path: com.github.mkv-extractor-qt5.yml
@@ -29,7 +29,7 @@ jobs:
           branch: stable
       - name: Deploy
         if: github.event_name != 'pull_request'
-        uses: flatpak/flatpak-github-actions/flat-manager@v3
+        uses: flatpak/flatpak-github-actions/flat-manager@v4
         with:
           repository: ""
           flat-manager-url: https://flatpak.hachiman.nils.moe
