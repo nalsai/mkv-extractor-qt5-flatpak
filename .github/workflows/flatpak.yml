@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: com.github.mkv-extractor-qt5.flatpak
           manifest-path: com.github.mkv-extractor-qt5.yml
