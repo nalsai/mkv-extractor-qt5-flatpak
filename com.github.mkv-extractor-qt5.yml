@@ -55,7 +55,7 @@ modules:
           project-id: 1991
           stable-only: true
           url-template: https://mkvtoolnix.download/sources/mkvtoolnix-$version.tar.xz
-          versions: 
+          versions:
             <: 82.0   # mkvtoolnix 81.0 is the latest version that supports qt5
     modules:
       - name: boost
@@ -258,8 +258,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.1-29
-            commit: 0deac72ed480ac2ec8e9d766c15ddb3bca055952
+            tag: 7.1.1-30
+            commit: dd459b01fd3dba99a5190aaca458c628293de0a3
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
