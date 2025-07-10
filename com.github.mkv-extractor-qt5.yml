@@ -1,6 +1,6 @@
 app-id: com.github.mkv-extractor-qt5
 runtime: org.kde.Platform
-runtime-version: 5.15-23.08
+runtime-version: 5.15-24.08
 sdk: org.kde.Sdk
 command: mkv-extractor-qt5
 default-branch: stable
@@ -9,7 +9,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
     add-ld-path: .
-    version: '23.08'
+    version: '24.08'
     autodownload: true
     autodelete: false
 cleanup-commands:
@@ -34,6 +34,15 @@ finish-args:
   - --device=dri
   - --filesystem=home
 modules:
+  - name: fmt
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=None
+      - -DBUILD_SHARED_LIBS=true
+    sources:
+      - type: archive
+        url: https://github.com/fmtlib/fmt/archive/refs/tags/10.2.1.tar.gz
+        sha256: 1250e4cc58bf06ee631567523f48848dc4596133e163f02615c97f78bab6c811
   - name: mkvtoolnix
     buildsystem: simple
     build-commands:
@@ -65,8 +74,8 @@ modules:
           - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
         sources:
           - type: archive
-            url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
-            sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
+            url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+            sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
             x-checker-data:
               type: anitya
               project-id: 6845
@@ -177,7 +186,7 @@ modules:
           - name: toml
             buildsystem: simple
             build-commands:
-              - python3 setup.py install --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
@@ -187,25 +196,10 @@ modules:
                   name: toml
             cleanup:
               - /bin
-          - name: packaging
-            buildsystem: simple
-            build-commands:
-              - python3 setup.py install --prefix=/app --root=/
-            sources:
-              - type: archive
-                url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
-                sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
-                x-checker-data:
-                  type: pypi
-                  name: packaging
-                  versions:
-                    <: '22.0'
-            cleanup:
-              - /bin
           - name: pyparsing
             buildsystem: simple
             build-commands:
-              - python3 setup.py install --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
@@ -220,7 +214,7 @@ modules:
           - name: sip
             buildsystem: simple
             build-commands:
-              - python3 setup.py install --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/33/e9/27730ac17713c0a80d81d8f3bb56213f1549d96f9dc183fd16a7eec6287c/sip-5.5.0.tar.gz
@@ -235,7 +229,7 @@ modules:
           - name: PyQt5_sip
             buildsystem: simple
             build-commands:
-              - python3 setup.py install --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/a3/82/08a09deda701feb930aa6462f2f22e07cbcb9aa7c1ef361a090221b4587e/PyQt5_sip-12.10.1.tar.gz
@@ -258,8 +252,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.1-43
-            commit: a2d96f40e707ba54b57e7d98c3277d3ea6611ace
+            tag: 7.1.1-47
+            commit: 82572afc879b439cbf8c9c6f3a9ac7626adf98fb
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
