@@ -186,7 +186,7 @@ modules:
           - name: toml
             buildsystem: simple
             build-commands:
-              - pip3 install --no-deps --no-build-isolation --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
@@ -199,7 +199,7 @@ modules:
           - name: packaging
             buildsystem: simple
             build-commands:
-              - pip3 install --no-deps --no-build-isolation --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz
@@ -212,7 +212,7 @@ modules:
           - name: pyparsing
             buildsystem: simple
             build-commands:
-              - pip3 install --no-deps --no-build-isolation --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
@@ -227,7 +227,7 @@ modules:
           - name: sip
             buildsystem: simple
             build-commands:
-              - pip3 install --no-deps --no-build-isolation --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/33/e9/27730ac17713c0a80d81d8f3bb56213f1549d96f9dc183fd16a7eec6287c/sip-5.5.0.tar.gz
@@ -242,7 +242,7 @@ modules:
           - name: PyQt5_sip
             buildsystem: simple
             build-commands:
-              - pip3 install --no-deps --no-build-isolation --prefix=/app --root=/
+              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
             sources:
               - type: archive
                 url: https://files.pythonhosted.org/packages/a3/82/08a09deda701feb930aa6462f2f22e07cbcb9aa7c1ef361a090221b4587e/PyQt5_sip-12.10.1.tar.gz
