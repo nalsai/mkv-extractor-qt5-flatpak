@@ -196,32 +196,6 @@ modules:
                   name: toml
             cleanup:
               - /bin
-          - name: flit-core
-            buildsystem: simple
-            build-commands:
-              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
-            sources:
-              - type: archive
-                url: https://files.pythonhosted.org/packages/69/59/b6fc2188dfc7ea4f936cd12b49d707f66a1cb7a1d2c16172963534db741b/flit_core-3.12.0.tar.gz
-                sha256: 18f63100d6f94385c6ed57a72073443e1a71a4acb4339491615d0f16d6ff01b2
-                x-checker-data:
-                  type: pypi
-                  name: flit-core
-            cleanup:
-              - /bin
-          - name: packaging
-            buildsystem: simple
-            build-commands:
-              - pip3 install --no-index --no-deps --no-build-isolation --prefix="${FLATPAK_DEST}" .
-            sources:
-              - type: archive
-                url: https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz
-                sha256: d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f
-                x-checker-data:
-                  type: pypi
-                  name: packaging
-            cleanup:
-              - /bin
           - name: pyparsing
             buildsystem: simple
             build-commands:
