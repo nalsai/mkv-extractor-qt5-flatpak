@@ -65,8 +65,8 @@ modules:
           - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
         sources:
           - type: archive
-            url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
-            sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
+            url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.bz2
+            sha256: 49551aff3b22cbc5c5a9ed3dbc92f0e23ea50a0f7325b0d198b705e8ee3fc305
             x-checker-data:
               type: anitya
               project-id: 6845
@@ -82,8 +82,8 @@ modules:
           - /bin
         sources:
           - type: archive
-            url: https://github.com/commonmark/cmark/archive/refs/tags/0.31.1.tar.gz
-            sha256: 3da93db5469c30588cfeb283d9d62edfc6ded9eb0edc10a4f5bbfb7d722ea802
+            url: https://github.com/commonmark/cmark/archive/refs/tags/0.31.2.tar.gz
+            sha256: f9bc5ca38bcb0b727f0056100fac4d743e768872e3bacec7746de28f5700d697
             x-checker-data:
               type: anitya
               project-id: 9159
@@ -258,8 +258,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/ImageMagick/ImageMagick
-            tag: 7.1.1-43
-            commit: a2d96f40e707ba54b57e7d98c3277d3ea6611ace
+            tag: 7.1.2-16
+            commit: 70563ce3759b7a55801900a11e69978a9301fbeb
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+-\d+)$
