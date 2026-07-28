@@ -268,8 +268,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/TheGreatMcPain/BDSup2SubPlusPlus
-            commit: f035d1cd3b7e327d77bfefbc745b295b403c4927
-            branch: meson
+            commit: acfc2096134066ffab79bc6d8cca9921e59b80f4
+            branch: master
       - name: mkclean
         buildsystem: simple
         build-commands:
