@@ -1,5 +1,11 @@
 # MKV-Extractor-Qt5 Flatpak
 
+> [!CAUTION]
+>
+> Replaced by [MKV-Extractor-Qt6-Flatpak](https://github.com/nalsai/MKV-Extractor-Qt6-Flatpak)  
+> Therefore this repository is no longer maintained.
+
+
 📦 Flatpak Package of MKV-Extractor-Qt5 for Linux
 
 <https://github.com/Hizoka76/MKV-Extractor-Qt5>
